@@ -59,6 +59,7 @@ const NetworkButtons = [
   { text: "Optimism-Goerli", filter: "optimism-goerli" },
   { text: "Osmosis", filter: "osmosis" },
   { text: "Stargaze", filter: "stargaze" },
+  { text: "Sepolia", filter: "sepolia" },
   { text: "EAS", filter: "easAttestations" },
   { text: "ENS", filter: "ensTextRecords" },
 ];
@@ -106,10 +107,7 @@ const ExplorePage = ({
 const filteredRegistrationsSunrise = (sunriseInstances, networkFilterValue = "") => {
   return sunriseInstances
     .filter((registration) => {
-      // Exclude the specific DAO address
-      // if (registration.daoAddress.toLowerCase() === "0xdeb9e5915db81011c549799a9ea37ede4d72efba") {
-      //   return false;
-      // }
+     
 
       // Check if the daoURI is in a valid format
       if (!isValidDaoURI(registration.daoURI)) {
@@ -152,7 +150,8 @@ console.log("gnnosis", registrationInstances
         return filteredRegistrationsSunrise(sunriseNetworkInstances, "gnosis")
       case "ethereum":
         return filteredRegistrationsSunrise(sunriseNetworkInstances, "mainnet")
-
+      case "sepolia":
+          return filteredRegistrationsSunrise(sunriseNetworkInstances, "sepolia")
       case "optimism":
         return registrationInstances
           .filter((reg) => NetworkFilterRegistrations(reg, "optimism"))

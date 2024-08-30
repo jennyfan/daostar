@@ -60,9 +60,10 @@ export function getChainId(): BigInt {
     chainId = BigInt.fromI32(84531);
   } else if (network == "base") {
     chainId = BigInt.fromI32(8453);
-  } else if (network == "zksync-era") {
-    chainId = BigInt.fromI32(324);
-  } else {
+  } else if (network == "sepolia") {
+    chainId = BigInt.fromI32(11155111);
+  } 
+  else {
     throw new Error(`No chainName for network ${network}`);
   }
 

@@ -255,6 +255,18 @@ console.log(mainnetData);
     data: arbitrumData,
   } = arbitrumRes;
 
+  const sepoliaRes = useQuery(queries.SUNRISE_REGISTRATIONS, {
+    context: { apiName: "sepolia" },
+    variables: { registrationNetworkId: "sepolia" },
+    fetchPolicy: 'network-only',
+  });
+  
+  const {
+    loading: sepoliaLoading,
+    error: sepoliaError,
+    data: sepoliaData,
+  } = sepoliaRes;
+
   const EASOptimismSepoliaiRes = useQuery(queries.ATTESTATIONS_BY_SCHEMA, {
     context: { apiName: "easOptimismSepolia" },
     variables: {
@@ -307,7 +319,8 @@ console.log(mainnetData);
     chapelError ||
     optimismError ||
     mainnetv0Error ||
-    arbitrumError
+    arbitrumError ||
+    sepoliaError
   ) {
     console.error("Mainnet Error " + error);
     console.error("Mainnet v0 Error " + mainnetv0Error);
@@ -317,6 +330,8 @@ console.log(mainnetData);
     console.error("Chapel Error" + chapelError);
     console.error("Optimism Error" + optimismError);
     console.error("Arbitrum Error" + arbitrumError);
+    console.error("Sepolia Error" + sepoliaError);
+
 
   }
   if (
@@ -327,7 +342,8 @@ console.log(mainnetData);
     arbitrumGoerliLoading ||
     chapelLoading ||
     optimismLoading ||
-    arbitrumLoading
+    arbitrumLoading ||
+    sepoliaLoading
   )
     return "loading...";
   const mainnetRegistrations =
@@ -346,6 +362,8 @@ console.log(mainnetData);
     arbitrumGoerliData?.registrationNetwork?.registrations || [];
   const arbitrumRegistrations =
     arbitrumData?.registrationNetwork?.registrations || [];
+  const sepoliaRegistrations =
+    sepoliaData?.registrationNetwork?.registrations || [];
   const chapelRegistrations =
     chapelData?.registrationNetwork?.registrations || [];
 
@@ -386,7 +404,8 @@ console.log(mainnetData);
   const sunriseNetworkInstances = gnosisRegistrations.concat(
     chapelRegistrations,
     mainnetRegistrations,
-    arbitrumRegistrations
+    arbitrumRegistrations,
+    sepoliaRegistrations
   );
 
   console.log({

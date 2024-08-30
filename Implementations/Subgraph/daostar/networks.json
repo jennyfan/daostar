@@ -5,6 +5,12 @@
             "startBlock": 8901481
         }
     },
+    "sepolia": {
+        "EIP4824Index": {
+            "address": "0xD4d107a57fddaF6A21d7D7d1411602F943e08caA",
+            "startBlock": 6602301
+        }
+    },
     "gnosis": {
         "EIP4824Index": {
             "address": "0x8180cbfBFFe59F54BF3Ea5d7DdbaE1232e2bB298",

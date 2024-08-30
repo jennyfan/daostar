@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "forge build",
+    "deploy:sepolia": "EVM_NETWORK=sepolia bash -c 'source .env && forge script script/Deploy.s.sol --fork-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast'",
     "deploy:goerli": "EVM_NETWORK=goerli source .env && forge script script/Deploy.s.sol --fork-url $GOERLI_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
     "deploy:gnosis": "EVM_NETWORK=gnosis source .env && forge script script/Deploy.s.sol --fork-url $GNOSIS_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
     "deploy:mainnet": "EVM_NETWORK=mainnet source .env && forge script script/Deploy.s.sol --fork-url $MAINNET_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
