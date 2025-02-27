@@ -38,6 +38,8 @@ export function MyStack({ stack }: StackContext) {
       "GET /nouns/members/{network}/{id}": "functions/nouns/getMembers.handler",
       "GET /boardroom/members/{network}/{id}":
         "functions/boardroom/getMembers.handler",
+      "GET /boardroom/proposals/{network}/{id}":
+        "functions/boardroom/getProposals.handler",
     },
     customDomain: {
       domainName: "services.daostar.org",
@@ -45,6 +47,7 @@ export function MyStack({ stack }: StackContext) {
       path: "api/v1",
     },
   });
+
 
   // Show the API endpoint in the output
   stack.addOutputs({

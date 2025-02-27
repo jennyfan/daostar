@@ -12,22 +12,26 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
     "@serverless-stack/cli": "^1.18.4",
     "@serverless-stack/resources": "^1.18.4",
+    "@tsconfig/node16": "^1.0.2",
     "@types/aws-lambda": "^8.10.97",
+    "prettier": "^2.3.2",
     "typescript": "^4.7.2",
-    "vitest": "^0.12.9",
-    "prettier": "^2.3.2"
+    "vitest": "^0.12.9"
   },
   "workspaces": [
     "backend"
   ],
   "dependencies": {
+    "@ethersproject/address": "^5.7.0",
     "@ethersproject/shims": "^5.7.0",
+    "@serverless-stack/core": "^1.18.4",
     "@snapshot-labs/snapshot.js": "^0.4.98",
     "aws-lambda": "^1.0.7",
+    "chalk": "^5.3.0",
     "ethers": "^5.7.2",
+    "fs-extra": "^11.2.0",
     "node-fetch": "^3.2.6"
   }
 }

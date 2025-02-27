@@ -28,7 +28,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   const cursor: string | undefined = event?.queryStringParameters?.cursor;
 
   const template = {
-    "@context": "http://daostar.org/schemas",
+    "@context": "http://www.daostar.org/schemas",
     type: "DAO",
     name: name,
   };
@@ -37,7 +37,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
     path +
     "/" +
     name +
-    "/voters" +
+    "/proposals" +
     "?limit=50&key=" +
     process.env.BOARDROOM_KEY;
   if (cursor) {
@@ -47,18 +47,20 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   const res = (await apiRequest(queryPath, "GET")) as any;
 
   if (!res.data) return { statusCode: 404, message: "DAO not found" };
-  const voters = res.data;
+  const proposals = res.data;
   const nextCursor = res.nextCursor;
 
-  const membersFormatted = voters.map((a: any) => {
+  const proposalsFormatted = proposals.map((a: any) => {
     return {
-      id: a.address,
-      type: "EthereumAddress",
+        "type": "proposal",
+        "id": a.id,
+        "name": a.title,
+        "status": a.currentState,
     };
   });
 
   const transformed = {
-    members: membersFormatted,
+    proposals: proposalsFormatted,
     ...template,
     nextCursor: encodeURIComponent(nextCursor),
   };
