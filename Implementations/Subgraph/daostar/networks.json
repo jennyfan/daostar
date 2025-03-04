@@ -46,5 +46,11 @@
             "address": "0x18CbB356cd64193b1a0CA49911fc72CB3D02a5E4",
             "startBlock": 171329384
         }
+    },
+    "optimism-sepolia": {
+        "EIP4824Index": {
+            "address": "0xD4d107a57fddaF6A21d7D7d1411602F943e08caA",
+            "startBlock": 24201479
+        }
     }
 }

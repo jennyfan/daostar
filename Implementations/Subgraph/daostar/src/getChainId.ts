@@ -30,6 +30,8 @@ export function getChainId(): BigInt {
     chainId = BigInt.fromI32(250);
   } else if (network == "optimism-goerli") {
     chainId = BigInt.fromI32(420);
+  }  else if (network == "optimism-sepolia") {
+    chainId = BigInt.fromI32(11155420);
   } else if (network == "optimism") {
     chainId = BigInt.fromI32(10);
   } else if (network == "mbase") {

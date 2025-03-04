@@ -10,6 +10,7 @@
     "deploy:mainnet": "EVM_NETWORK=mainnet source .env && forge script script/Deploy.s.sol --fork-url $MAINNET_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
     "verify:mainnet": "EVM_NETWORK=mainnet source .env && forge verify-contract",
     "deploy:optimism": "EVM_NETWORK=optimism source .env && forge script script/Deploy.s.sol --fork-url $OPTIMISM_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
+    "deploy:optimism-sepolia": "EVM_NETWORK=optimism-sepolia source .env && forge script script/Deploy.s.sol --fork-url $OPTIMISM_SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
     "deploy:arbitrum": "EVM_NETWORK=arbitrum source .env && forge script script/Deploy.s.sol --fork-url $ARBITRUM_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
     "deploy:polygon": "EVM_NETWORK=polygon source .env && forge script script/Deploy.s.sol --fork-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --verify --etherscan-api-key $ETHERSCAN_KEY -vvvv --broadcast",
     "test": "forge test"

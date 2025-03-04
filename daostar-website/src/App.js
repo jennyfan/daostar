@@ -182,11 +182,12 @@ console.log(mainnetData);
     context: { apiName: "goerli" },
     variables: { id: "goerli" },
   });
+  const optimismSepoliaRes = useQuery(queries.SUNRISE_REGISTRATIONS, {
+    context: { apiName: "optimismSepolia" },
+    variables: { registrationNetworkId: "optimism-sepolia" },
+    fetchPolicy: 'network-only',
+  });
   // TODO: Replace Goerli with Sepolia
-  // const optimismGoerliRes = useQuery(queries.REGISTRATIONS, {
-  //   context: { apiName: "optimismGoerli" },
-  //   variables: { id: "optimism-goerli" },
-  // });
   // const arbitrumGoerliRes = useQuery(queries.REGISTRATIONS, {
   //   context: { apiName: "arbitrumGoerli" },
   //   variables: { id: "arbitrum-goerli" },
@@ -219,11 +220,11 @@ console.log(mainnetData);
     data: optimismData,
   } = optimismRes;
 
-  // const {
-  //   loading: optimismGoerliLoading,
-  //   error: optimismGoerliError,
-  //   data: optimismGoerliData,
-  // } = optimismGoerliRes;
+  const {
+    loading: optimismSepoliaLoading,
+    error: optimismSepoliaError,
+    data: optimismSepoliaData,
+  } = optimismSepoliaRes;
   // // const {
   // //   loading: arbitrumGoerliLoading,
   // //   error: arbitrumGoerliError,
@@ -300,8 +301,7 @@ console.log(mainnetData);
   if (
     error ||
     goerliError ||
-    // optimismGoerliError ||
-    // arbitrumGoerliError ||
+    optimismSepoliaError ||
     chapelError ||
     optimismError ||
     mainnetv0Error ||
@@ -310,8 +310,7 @@ console.log(mainnetData);
     console.error("Mainnet Error " + error);
     console.error("Mainnet v0 Error " + mainnetv0Error);
     console.error("Goerli Error " + goerliError);
-    // console.error("Optimism Goerli Error " + optimismGoerliError);
-    // console.error("Arbitrum Goerli Error" + arbitrumGoerliError);
+    console.error("Optimism Sepolia Error " + optimismSepoliaError);
     console.error("Chapel Error" + chapelError);
     console.error("Optimism Error" + optimismError);
     console.error("Arbitrum Error" + arbitrumError);
@@ -321,8 +320,7 @@ console.log(mainnetData);
     loading ||
     goerliLoading ||
     gnosisLoading ||
-    // optimismGoerliLoading ||
-    // arbitrumGoerliLoading ||
+    optimismSepoliaLoading ||
     chapelLoading ||
     optimismLoading ||
     arbitrumLoading
@@ -334,14 +332,13 @@ console.log(mainnetData);
     mainnetv0Data?.registrationNetwork?.registrations || [];
   const goerliRegistrations =
     goerliData?.registrationNetwork?.registrations || [];
- // const optimismGoerliRegistrations =
-  //  optimismGoerliData?.registrationNetwork?.registrations || [];
+ const optimismSepoliaRegistrations =
+  optimismSepoliaData?.registrationNetwork?.registrations || [];
   const optimismRegistrations =
     optimismData?.registrationNetwork?.registrations || [];
   const gnosisRegistrations =
     gnosisData?.registrationNetwork?.registrations  || [];
-  // const arbitrumGoerliRegistrations =
-  //   arbitrumGoerliData?.registrationNetwork?.registrations || [];
+  
   const arbitrumRegistrations =
     arbitrumData?.registrationNetwork?.registrations || [];
   const chapelRegistrations =
@@ -370,13 +367,12 @@ console.log(mainnetData);
   const allRegistrationInstances = mainnetRegistrations.concat(
     allMainnetV0Registrations,
     goerliRegistrations,
+    optimismSepoliaRegistrations,
     //arbitrumGoerliRegistrations,
-    optimismRegistrations,
-    // arbitrumRegistrations
+    arbitrumRegistrations
   );
 
   const EASAttestations = EASOptimismAttestations.concat(EASOptimismSepoliaAttestations);
-  const daodaoRegInstances = daodaoInstances;
   const registrationInstances = allRegistrationInstances.filter(
     (instance) => !registrationIdsToFilter.includes(instance.id)
   );
@@ -384,7 +380,9 @@ console.log(mainnetData);
   const sunriseNetworkInstances = gnosisRegistrations.concat(
     chapelRegistrations,
     mainnetRegistrations,
-    arbitrumRegistrations
+    arbitrumRegistrations,
+    optimismRegistrations,
+
   );
 
   console.log({
@@ -392,7 +390,7 @@ console.log(mainnetData);
     mainnetv0Data,
     goerliData,
     gnosisData,
-    // optimismGoerliData,
+    optimismSepoliaData,
     // arbitrumGoerliData,
     chapelData,
     arbitrumData,

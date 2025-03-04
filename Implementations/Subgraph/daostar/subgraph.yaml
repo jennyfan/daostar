@@ -3,11 +3,10 @@ schema:
   file: ./schema.graphql
 features:
   - ipfsOnEthereumContracts
-
 templates:
   - name: EIP4824Registration
     kind: ethereum/contract
-    network: arbitrum-one
+    network: optimism-sepolia
     source:
       abi: EIP4824Registration
     mapping:
@@ -23,7 +22,6 @@ templates:
       eventHandlers:
         - event: DAOURIUpdate(address,string)
           handler: handleNewURI
-
   - name: DAOMetadataTemplate
     kind: file/ipfs
     mapping:
@@ -33,16 +31,16 @@ templates:
       handler: handleDAOMetadata
       entities:
         - DAOMetadata
-      abis: []  # No ABIs required for file data sources
-
+      abis: []
+    network: optimism-sepolia
 dataSources:
   - kind: ethereum
     name: EIP4824Index
-    network: arbitrum-one
+    network: optimism-sepolia
     source:
       abi: EIP4824Index
-      address: "0x18CbB356cd64193b1a0CA49911fc72CB3D02a5E4"
-      startBlock: 171329384
+      address: "0xD4d107a57fddaF6A21d7D7d1411602F943e08caA"
+      startBlock: 24201479
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
